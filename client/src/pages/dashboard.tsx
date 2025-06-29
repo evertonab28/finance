@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { financeService, getCategoryName } from "@/lib/services";
 import ResumoCard from "@/components/dashboard/resumo-card";
 import GraficoBarras from "@/components/dashboard/grafico-barras";
 import GraficoPizza from "@/components/dashboard/grafico-pizza";
@@ -6,13 +7,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Download, TrendingUp, TrendingDown, Wallet, Utensils, Briefcase, Car, Home } from "lucide-react";
-import type { Transaction } from "@shared/schema";
+import type { Transaction, Category } from "@shared/schema";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 export default function Dashboard() {
   const { data: transactions = [], isLoading: transactionsLoading } = useQuery<Transaction[]>({
     queryKey: ["/api/transactions"],
+    queryFn: () => financeService.getTransactions(),
+  });
+
+  const { data: categories = [] } = useQuery<Category[]>({
+    queryKey: ["/api/categories"],
+    queryFn: () => financeService.getCategories(),
   });
 
   const { data: monthlyData = [], isLoading: monthlyLoading } = useQuery<Array<{ month: string; receitas: number; despesas: number }>>({
@@ -28,12 +35,31 @@ export default function Dashboard() {
   });
 
   const getIconForCategory = (category: string) => {
+    if (!category) return <Wallet className="text-gray-600 w-4 h-4" />;
+    
     switch (category.toLowerCase()) {
-      case 'alimentação': return <Utensils className="text-red-600 w-4 h-4" />;
-      case 'renda': return <Briefcase className="text-green-600 w-4 h-4" />;
-      case 'transporte': return <Car className="text-blue-600 w-4 h-4" />;
-      case 'moradia': return <Home className="text-purple-600 w-4 h-4" />;
-      default: return <Wallet className="text-gray-600 w-4 h-4" />;
+      case 'alimentação':
+      case 'supermercado':
+      case 'restaurante':
+      case 'delivery':
+        return <Utensils className="text-red-600 w-4 h-4" />;
+      case 'salário':
+      case 'freelance':
+      case 'investimentos':
+        return <Briefcase className="text-green-600 w-4 h-4" />;
+      case 'transporte':
+        return <Car className="text-blue-600 w-4 h-4" />;
+      case 'moradia':
+      case 'aluguel':
+      case 'condomínio':
+      case 'iptu':
+        return <Home className="text-purple-600 w-4 h-4" />;
+      case 'entretenimento':
+        return <TrendingUp className="text-pink-600 w-4 h-4" />;
+      case 'saúde':
+        return <TrendingDown className="text-blue-600 w-4 h-4" />;
+      default:
+        return <Wallet className="text-gray-600 w-4 h-4" />;
     }
   };
 
@@ -140,12 +166,12 @@ export default function Dashboard() {
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                     transaction.type === 'receita' ? 'bg-green-100' : 'bg-red-100'
                   }`}>
-                    {getIconForCategory(transaction.category)}
+                    {getIconForCategory(getCategoryName(transaction.categoryId, categories))}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-800">{transaction.description}</p>
                     <p className="text-xs text-slate-500">
-                      {transaction.category} • {formatDistanceToNow(new Date(transaction.date), { addSuffix: true, locale: ptBR })}
+                      {getCategoryName(transaction.categoryId, categories)} • {formatDistanceToNow(new Date(transaction.date), { addSuffix: true, locale: ptBR })}
                     </p>
                   </div>
                 </div>

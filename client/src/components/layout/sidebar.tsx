@@ -8,13 +8,15 @@ import {
   Settings,
   BarChart3,
   Menu,
-  X
+  X,
+  Tags
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: ChartPie },
   { name: "Transações", href: "/transacoes", icon: List },
   { name: "Nova Transação", href: "/nova-transacao", icon: Plus },
+  { name: "Categorias", href: "/categorias", icon: Tags },
   { name: "Configurações", href: "/configuracoes", icon: Settings },
 ];
 
