@@ -48,7 +48,7 @@ export default function TabelaTransacoes({ transactions, onDelete, isDeleting }:
   return (
     <Card className="rounded-2xl border-slate-200 overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full min-w-[600px]">
           <thead className="bg-slate-50 border-b border-slate-200">
             <tr>
               <th className="text-left py-4 px-6 text-sm font-medium text-slate-700">Data</th>

@@ -60,18 +60,18 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 md:p-6">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
+      <div className="mb-6 md:mb-8 pt-16 md:pt-0">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-slate-800">Dashboard Financeiro</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Dashboard Financeiro</h1>
             <p className="text-slate-600 mt-1">Visão geral das suas finanças pessoais</p>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <Select defaultValue="6months">
-              <SelectTrigger className="w-[180px] rounded-xl">
+              <SelectTrigger className="w-full sm:w-[180px] rounded-xl">
                 <SelectValue placeholder="Selecionar período" />
               </SelectTrigger>
               <SelectContent>
@@ -82,7 +82,7 @@ export default function Dashboard() {
                 <SelectItem value="november">Novembro 2024</SelectItem>
               </SelectContent>
             </Select>
-            <Button className="rounded-xl">
+            <Button className="rounded-xl w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Exportar
             </Button>
@@ -91,7 +91,7 @@ export default function Dashboard() {
       </div>
 
       {/* Financial Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
         <ResumoCard
           title="Total Receitas"
           value={financialSummary?.totalReceitas || 0}
@@ -116,7 +116,7 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
         <GraficoBarras data={monthlyData} />
         <GraficoPizza data={expensesByCategory} />
       </div>

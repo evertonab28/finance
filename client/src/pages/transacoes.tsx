@@ -106,17 +106,17 @@ export default function Transacoes() {
   }
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 md:p-6">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
+      <div className="mb-6 md:mb-8 pt-16 md:pt-0">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-slate-800">Transações</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Transações</h1>
             <p className="text-slate-600 mt-1">Histórico completo das suas movimentações financeiras</p>
           </div>
           
           <Link href="/nova-transacao">
-            <Button className="rounded-xl">
+            <Button className="rounded-xl w-full md:w-auto">
               <Plus className="w-4 h-4 mr-2" />
               Nova Transação
             </Button>
@@ -125,9 +125,9 @@ export default function Transacoes() {
       </div>
 
       {/* Filters */}
-      <Card className="rounded-2xl border-slate-200 mb-6">
-        <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <Card className="rounded-2xl border-slate-200 mb-4 md:mb-6">
+        <CardContent className="p-4 md:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <Label className="text-sm font-medium text-slate-700 mb-2 block">Período</Label>
               <Select value={filters.period} onValueChange={(value) => setFilters(prev => ({ ...prev, period: value }))}>
