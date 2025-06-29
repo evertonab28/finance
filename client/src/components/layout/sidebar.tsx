@@ -30,10 +30,10 @@ export default function Sidebar() {
     <div className="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg border-r border-slate-200">
       <div className="flex h-full flex-col">
         {/* Logo/Brand */}
-        <div className="flex items-center px-6 py-4 border-b border-slate-200">
+        <div className="flex items-center px-6 py-5 border-b border-slate-200">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+              <BarChart3 className="w-5 h-5 text-white" />
             </div>
             <h1 className="text-xl font-bold text-slate-800">FinanceDash</h1>
           </div>

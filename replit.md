@@ -106,7 +106,12 @@ This is a full-stack personal finance management application built with React, E
 
 ```
 Changelog:
-- June 29, 2025. Initial setup
+- June 29, 2025. Initial setup with complete finance dashboard
+  - Fixed sidebar positioning for proper layout
+  - Improved responsive design with fixed navigation
+  - Complete dashboard with charts and financial summaries
+  - Transaction management with CRUD operations
+  - Portuguese language interface
 ```
 
 ## User Preferences
