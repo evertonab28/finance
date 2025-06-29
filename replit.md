@@ -50,6 +50,7 @@ This is a full-stack personal finance management application built with React, E
 - **Transaction Management**: CRUD operations with form validation
 - **Analytics**: Bar charts for monthly trends and pie charts for expense categories
 - **Responsive Design**: Mobile-first approach with collapsible sidebar navigation
+- **ShadCN UI Integration**: Official ShadCN components for Button, Card, Input, Form, Select, Dialog, and other UI elements
 
 ### Form Handling
 - React Hook Form with Zod resolver for type-safe form validation
@@ -112,6 +113,11 @@ Changelog:
   - Complete dashboard with charts and financial summaries
   - Transaction management with CRUD operations
   - Portuguese language interface
+- June 29, 2025. Migration to official ShadCN UI components
+  - Replaced all Radix UI direct dependencies with ShadCN CLI components
+  - Cleaned up package.json by removing 19 unused Radix UI packages
+  - Maintained only essential Radix UI dependencies used by ShadCN internally
+  - All components now follow official ShadCN patterns and structure
 ```
 
 ## User Preferences
